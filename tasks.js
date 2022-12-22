@@ -42,6 +42,9 @@ function onDataReceived(text) {
   else if(text === 'help\n'){
     help();
   }
+  else if(text==='listTasks\n'){
+    listTasks();
+  }
   else{
     unknownCommand(text);
   }
@@ -60,7 +63,7 @@ function unknownCommand(c){
 }
 // get all the commands 
 function help(){
-  console.log('---- quit or exit :exit app\n ---- hello: type hello!\n-------- help: list all commands\n-----hello [name] :hello name! ')
+  console.log('---- quit or exit :exit app\n ---- hello: type hello!\n-------- help: list all commands\n-----hello [name] :hello name ! ')
 }
 
 /**
@@ -96,6 +99,15 @@ function quit(){
   console.log('Quitting now, goodbye!')
   process.exit();
 }
+
+function listTasks() {
+const tasks = ['add','delete','update'];
+  console.log('Tasks:');
+  for (let i = 0; i < tasks.length; i++) {
+    console.log(`${i + 1}. ${tasks[i]}`);
+  }
+}
+
 
 // The following line starts the application
 startApp("malek khoder")
