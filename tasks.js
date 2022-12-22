@@ -37,9 +37,8 @@ function onDataReceived(text) {
   if (text === 'quit\n' || text==='exit\n') {
     quit();
   }
-  else if(text === 'hello\n'){
-    hello();
-  }
+  else if (text.trim().startsWith("hello ")) {
+    hello(text.trim()+'!');}
   else if(text === 'help\n'){
     help();
   }
@@ -69,10 +68,24 @@ function help(){
  *
  * @returns {void}
  */
-function hello(){
-  console.log('hello!')
-}
+function hello(inputString) {
+  // Split the input string into an array of words
+  const words = inputString.split(" ");
 
+  // Replace the word "hello" with "hello [argument]!"
+  let outputString;
+  if (words.length > 1) {
+    outputString = inputString.replace("hello", `${words[0]}`, 1);
+  }
+  else {
+    outputString = inputString;
+  }
+
+  // Remove any leading or trailing white space from the output string
+  outputString = outputString.trim();
+
+  console.log(outputString);
+}
 
 /**
  * Exits the application
