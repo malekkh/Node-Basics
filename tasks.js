@@ -45,6 +45,15 @@ function onDataReceived(text) {
   else if(text==='listTasks\n'){
     listTasks();
   }
+  else if(text.startsWith('add')){
+    let nameTask=text.split(' ')[1]
+    if(nameTask!==undefined){
+      add(text);
+    }
+    else{
+      add('add');
+    }
+  }
   else{
     unknownCommand(text);
   }
@@ -99,15 +108,23 @@ function quit(){
   console.log('Quitting now, goodbye!')
   process.exit();
 }
-
+let tasks = ['add','delete','update'];
 function listTasks() {
-const tasks = ['add','delete','update'];
   console.log('Tasks:');
   for (let i = 0; i < tasks.length; i++) {
     console.log(`${i + 1}. ${tasks[i]}`);
   }
 }
-
+function add(task) {
+  let mainTask=task.split(" ")[1];
+  if (task==='add') {
+    console.error('Error: No task provided');
+  }
+  else if(mainTask!==undefined){
+    tasks.push(mainTask);
+    console.log(`Added task: ${mainTask}`);
+  }
+}
 
 // The following line starts the application
 startApp("malek khoder")
