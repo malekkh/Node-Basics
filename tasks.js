@@ -132,7 +132,7 @@ function add(task) {
 function Remove(Rtask){
   nameTask=Rtask.split(' ')[1]
   if(nameTask>2){
-    console.error('not found');
+    console.error('not exist');
   }
  else if(Rtask==='remove'){
   tasks.pop();
