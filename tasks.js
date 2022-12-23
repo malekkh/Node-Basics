@@ -37,6 +37,17 @@ function onDataReceived(text) {
   if (text === 'quit\n' || text==='exit\n') {
     quit();
   }
+   // ------ uncheck 
+  else if(text.startsWith('uncheck')){
+    let unindexed=text.split(' ');
+    uncheck(parseInt(unindexed[1]));
+  }
+// check an uncheck 
+  else if(text.startsWith('check')){
+    let indexed=text.split(' ');
+    check(parseInt(indexed[1]));    
+  }
+ 
   // edit task..
   else if(text==='edit\n'){
     console.error('error');
@@ -121,7 +132,25 @@ function quit(){
   console.log('Quitting now, goodbye!')
   process.exit();
 }
-const tasks = [
+function check(index) {
+  
+  if (index >= 0 && index < tasks.length) {
+    tasks[index-1].done = true;
+    console.log('checked');
+  } else {
+    console.log("Error: Invalid task index");
+  }
+}
+
+function uncheck(indexed) {
+  if (indexed >= 0 && indexed < tasks.length) {
+    tasks[indexed-1].done = false;
+    console.log('unchecked');
+  } else {
+    console.log("Error: Invalid task index!!");
+  }
+}
+let tasks = [
   {
     text: "get potato",
     done: false
