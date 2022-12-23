@@ -54,6 +54,10 @@ function onDataReceived(text) {
       add('add');
     }
   }
+  else if(text.startsWith('remove\n')||text.split(' '[1]!==NaN)){
+    Remove(text.trim());
+    
+  }
   else{
     unknownCommand(text);
   }
@@ -124,6 +128,25 @@ function add(task) {
     tasks.push(mainTask);
     console.log(`Added task: ${mainTask}`);
   }
+}
+function Remove(Rtask){
+  nameTask=Rtask.split(' ')[1]
+  if(nameTask>2){
+    console.error('not found');
+  }
+ else if(Rtask==='remove'){
+  tasks.pop();
+  listTasks();
+  console.log('-----removed last one');
+ }
+ else if(Rtask==='remove 1'){
+  tasks.shift();
+  console.log('-----removed 1');
+ }
+ else if(Rtask==='remove 2'){
+  tasks.splice(0,1);
+  console.log('-----removed 2');
+ }
 }
 
 // The following line starts the application
