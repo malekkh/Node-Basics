@@ -121,11 +121,26 @@ function quit(){
   console.log('Quitting now, goodbye!')
   process.exit();
 }
-let tasks = ['add','delete','update'];
+const tasks = [
+  {
+    text: "get potato",
+    done: false
+  },
+  {
+    text: "walk the dog",
+    done: true
+  },
+  {
+    text: "do homework",
+    done: false
+  }
+]
 function listTasks() {
   console.log('Tasks:');
   for (let i = 0; i < tasks.length; i++) {
-    console.log(`${i + 1}. ${tasks[i]}`);
+    let task = tasks[i];
+    let prefix = task.done ? "[✓] " : "[ ] ";
+    console.log(`${i + 1}. ${prefix}${task.text}`);
   }
 }
 function add(task) {
