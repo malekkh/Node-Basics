@@ -37,15 +37,20 @@ function onDataReceived(text) {
   if (text === 'quit\n' || text==='exit\n') {
     quit();
   }
+  // edit task..
+  else if(text==='edit\n'){
+    console.error('error');
+  }
+  else if(text.startsWith('edit')|| text.split(' ')[1]!==undefined){
+    Edit(text)
+  }
   else if (text.trim().startsWith("hello ")|| text.trim()==='hello') {
     hello(text.trim()+'!');}
   else if(text === 'help\n'){
     help();
   }
-  else if(text==='listTasks\n'){
-    listTasks();
-  }
-  else if(text.startsWith('add')){
+//  add task...
+   else if(text.startsWith('add')){
     let nameTask=text.split(' ')[1]
     if(nameTask!==undefined){
       add(text);
@@ -54,6 +59,10 @@ function onDataReceived(text) {
       add('add');
     }
   }
+  else if(text==='listTasks\n'){
+    listTasks();
+  }
+ 
   else if(text.startsWith('remove\n')||text.split(' '[1]!==NaN)){
     Remove(text.trim());
     
@@ -129,6 +138,33 @@ function add(task) {
     console.log(`Added task: ${mainTask}`);
   }
 }
+function Edit(ToEdit){
+  arrText=ToEdit.split(' ');
+  newText=ToEdit.split(' ')[1]
+  if(ToEdit==='edit' ){
+    console.error('error:---specify the text!!!')
+  }
+  else{
+    if(parseInt(arrText[1])>tasks.length){
+      console.log('index not founded')
+    }
+    else if(arrText.length<=2){
+      tasks.splice(tasks.length-1,1,newText);
+      console.log('edited last one----')
+    }
+    else if(arrText.length>2){
+      if(arrText[2]!==undefined && arrText[1]!==NaN){
+        tasks.splice(parseInt(arrText[1]-1),1,arrText[2])
+        console.log('edited-----');
+      }
+      
+    }
+
+    
+  }
+
+}
+
 function Remove(Rtask){
   nameTask=Rtask.split(' ')[1]
   if(nameTask>2){
@@ -136,7 +172,6 @@ function Remove(Rtask){
   }
  else if(Rtask==='remove'){
   tasks.pop();
-  listTasks();
   console.log('-----removed last one');
  }
  else if(Rtask==='remove 1'){
