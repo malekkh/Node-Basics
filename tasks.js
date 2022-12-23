@@ -76,7 +76,7 @@ function unknownCommand(c){
 }
 // get all the commands 
 function help(){
-  console.log('---- quit or exit :exit app\n ---- hello: type hello!\n-------- help: list all commands\n-----hello [name] :hello name ! ')
+  console.log('---- quit or exit :exit app\n ---- hello: type hello!\n-------- help: list all commands\n-----hello [name] :hello name ! \n  ---- add [task]: to add task \n -----remove : remove the 1st one \n ------remove [index]:remove item at specific index ')
 }
 
 /**
